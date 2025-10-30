@@ -104,7 +104,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/CheckOut"
+                    path="/Checkout"
                     element={
                       <main>
                         <Checkout />
