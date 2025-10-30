@@ -8,7 +8,7 @@ import Header from "./pages/Header";
 import Home from "./pages/Home";
 import CartPage from "./pages/CartPage";
 import Help from "./pages/Help";
-import Checkout from "./pages/CheckOut";
+import Checkout from "./pages/Checkout";
 import Footer from "./pages/Footer";
 
 import ProductPage from "./pages/Product Page/ProductPage";
