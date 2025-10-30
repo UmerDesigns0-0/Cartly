@@ -49,7 +49,7 @@ function HeaderUpper({
             <img
               src={Cartly}
               draggable="false"
-              className="h-20 w-20 cursor-pointer select-auto"
+              className="h-16 w-16 md:h-20 md:w-20 cursor-pointer select-auto"
               alt="Cartly"
             />
           </Link>
