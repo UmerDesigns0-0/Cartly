@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+
+/* ANIMATED UNDERLINE */
+@layer components {
+  /* nav underline */
+   .txt {
+     @apply relative inline-block; /* group allows child hover animation */
+   }
+   .undl {
+     @apply absolute bottom-0 left-0 h-0.5 bg-orange-400 w-0 transition-all duration-300 ease-in-out;
+   }
+   .txt:hover .undl {
+     @apply w-full;
+   }
+
+  /* category underline */
+     .cate {
+     @apply relative inline-block hover:text-orange-500; /* group allows child hover animation */
+   }
+   .undl2 {
+     @apply absolute bottom-[-5px] left-0 h-[3.5px] rounded-2xl bg-orange-400 w-0 transition-all duration-300 ease-in-out;
+   }
+   .cate:hover .undl2 {
+     @apply w-[70%];
+   }
+     .active .undl2 {
+    @apply w-full;
+  }
+
+  /* Cards underline */
+  .cardtxt {
+    @apply relative inline-block; /* group allows child hover animation */
+  }
+  .undlCard {
+    @apply absolute bottom-0 bg-gray-600 left-0 h-[1.2px] w-0 transition-all duration-300 ease-in-out;
+  }
+  .cardtxt:hover .undlCard {
+    @apply w-full;
+  }
+
+  /* Optional: active text color */
+  .active {
+    @apply text-orange-500;
+  }
+
+/* Left/Sidebar underline */
+.undl-left {
+  @apply absolute top-0 left-0 w-0.5 bg-orange-400 h-0 transition-all duration-300 ease-in-out;
+}
+
+.active .undl-left {
+  @apply  h-full;
+}
+}
+
+
+/* CARDS & CAROUSELS STYLES */
+
+/* CateCaro */
+.CateCaro{
+  @apply grid items-center justify-center p-2 hover:scale-105 duration-200 ease-in cursor-pointer;
+}
+.CateCaro-img{
+  @apply rounded-lg shadow shadow-gray-400 inline-block overflow-hidden;
+}
+.CateCaro-img-inner{
+  @apply m-2 h-32 w-auto rounded-lg align-middle;
+}
+.CateCaro-txt{
+  @apply text-sm mt-4 font-medium text-center;
+}
+
+
+
+
+/* SWIPER */
+
+/* navigation */
+.swiper-navigation-icon {
+  @apply text-gray-800 !w-5 !h-5 !fill-current; /* arrow color + size */
+}
+:root {
+  --swiper-navigation-sides-offset: 1rem; /* pushes buttons inward/outward */
+  --swiper-navigation-top-offset: 50%;    /* vertical position */
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply bg-slate-200 hover:bg-slate-300 rounded-full shadow w-8 h-8 flex items-center justify-center z-50;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    opacity: 0;
+    pointer-events: none; /* disables click */
+    visibility: hidden;
+  }
+}
+
+/* pagination */
+.swiper-pagination-mobile{
+  @apply md:hidden flex justify-center; /* show only on mobile/tablet */
+}
+@media (min-width: 1024px) {
+          :global(.swiper-pagination) {
+            display: none !important;
+          }
+        }
+.swiper-pagination-bullet {
+  @apply !bg-orange-400 !w-3 !h-3 lg:!hidden; /* moves pagination up/down */
+}
+/* .swiper-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100%;
+} */
+
+
+/* PRODUCT PAGE */
+       .swiper-wrapper {
+            height: max-content !important;
+            width: max-content;
+          }
+
+          .swiper-button-prev:after,
+          .swiper-rtl .swiper-button-next:after,
+          .swiper-button-next:after,
+          .swiper-rtl .swiper-button-prev:after {
+            content: "" !important;
+          }
+
+
+
+
+/* CART ANIMATION */
+@theme {
+  --animate-cart-bump: cart-bump 0.33s ease-in-out;
+
+  @keyframes cart-bump {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    30% {
+      transform: scale(1.2) rotate(-10deg);
+    }
+    60% {
+      transform: scale(0.9) rotate(5deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+}
