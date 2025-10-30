@@ -3,7 +3,7 @@ function SubscribeCard() {
     <>
       <div className="bg-indigo-700 px-10 py-14 my-4 rounded-lg">
         <div className="mx-auto max-w-screen-md sm:text-center">
-          <h2 className="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white">
+          <h2 className="mb-4 text-2xl tracking-tight font-bold text-gray-200">
             Sign up for our newsletter
           </h2>
           <p className="mx-auto mb-8 text-md max-w-2xl font-light text-slate-100 md:mb-12">
@@ -15,13 +15,13 @@ function SubscribeCard() {
               <div className="relative w-full">
                 <label
                   htmlFor="email"
-                  className="hidden mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  className="hidden mb-2 text-sm font-medium text-gray-900"
                 >
                   Email address
                 </label>
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                   <svg
-                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    className="w-5 h-5 text-gray-500"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -47,11 +47,11 @@ function SubscribeCard() {
                 </button>
               </div>
             </div>
-            <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-500 newsletter-form-footer dark:text-gray-300">
+            <div className="mx-auto max-w-screen-sm text-sm text-left text-gray-200 newsletter-form-footer">
               We care about the protection of your data.{" "}
               <a
                 href="#"
-                className="font-medium text-primary-600 dark:text-primary-500 hover:underline"
+                className="font-medium text-primary-600 hover:underline"
               >
                 Read our Privacy Policy
               </a>
