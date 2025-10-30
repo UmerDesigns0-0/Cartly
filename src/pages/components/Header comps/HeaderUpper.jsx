@@ -49,7 +49,7 @@ function HeaderUpper({
             <img
               src={Cartly}
               draggable="false"
-              className="h-16 w-16 md:h-20 md:w-20 cursor-pointer select-auto"
+              className="h-20 w-20 cursor-pointer select-auto"
               alt="Cartly"
             />
           </Link>
@@ -97,7 +97,7 @@ function HeaderUpper({
         </div>
 
         <div className="ml-2 flex gap-x-1.5 px-2">
-          <div className="flex cursor-pointer items-center gap-x-1">
+          <div className="hidden md:block flex cursor-pointer items-center gap-x-1">
             <Link to="/Help">
               <button className="cursor-pointer text-sm rounded-2xl bg-orange-400 py-2 px-5 text-amber-50 hover:bg-orange-500">
                 Help
