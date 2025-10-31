@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Scrollbar } from "swiper/modules";
 import "swiper/css";
@@ -10,10 +10,6 @@ import { Link } from "react-router-dom";
 import Spinners from "../components/Spinners";
 
 function RelatedProducts({ category, currentId }) {
-  const [products, setProducts] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
   const colors = [
     "bg-blue-300",
     "bg-red-300",
@@ -25,56 +21,55 @@ function RelatedProducts({ category, currentId }) {
     "bg-teal-300",
   ];
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      if (!category) return;
-      try {
-        const res = await fetch(
-          `https://dummyjson.com/products/category/${category}`
-        );
-        if (!res.ok) throw new Error("Network response was not ok");
+  const {
+    data: relatedProducts = [],
+    isLoading,
+    error,
+  } = useQuery({
+    ueryKey: ["relatedProducts", category, currentId],
+    queryFn: async () => {
+      if (!category) return [];
+      const res = await fetch(
+        `https://dummyjson.com/products/category/${category}`
+      );
+      if (!res.ok) throw new Error("Network response was not ok");
 
-        const data = await res.json();
+      const data = await res.json();
 
-        const filterCurrentId = data.products.filter(
-          (product) => product.id !== currentId
-        );
+      const filterCurrentId = data.products.filter(
+        (product) => product.id !== currentId
+      );
 
-        const extendedColors = [];
-        for (let i = 0; i < filterCurrentId.length; i++) {
-          extendedColors.push(colors[i % colors.length]);
-        }
-
-        const shuffledColors = extendedColors.sort(() => Math.random() - 0.5);
-
-        const productsWithColors = filterCurrentId
-          .sort(() => Math.random() - 0.5)
-          .map((product, index) => ({
-            ...product,
-            bgColor: shuffledColors[index],
-          }));
-
-        setProducts(productsWithColors);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setProducts([]);
-      } finally {
-        setLoading(false);
+      const extendedColors = [];
+      for (let i = 0; i < filterCurrentId.length; i++) {
+        extendedColors.push(colors[i % colors.length]);
       }
-    };
 
-    fetchProducts();
-  }, [category, currentId]);
-  if (!loading && products.length === 0) {
+      const shuffledColors = extendedColors.sort(() => Math.random() - 0.5);
+
+      const productsWithColors = filterCurrentId
+        .sort(() => Math.random() - 0.5)
+        .map((product, index) => ({
+          ...product,
+          bgColor: shuffledColors[index],
+        }));
+
+      return productsWithColors;
+    },
+  });
+  
+  if (!isLoading && products.length === 0) {
     return null;
   }
 
   return (
     <div className="mt-2 px-2 mx-auto pb-6 lg:pb-12">
-      {loading ? (
+      {isLoading ? (
         <div className="flex justify-center items-center min-h-[200px]">
-          <Spinners type="rise" loading={loading} size={15} />
+          <Spinners type="rise" size={15} />
         </div>
+      ) : error ? (
+        <p className="text-center text-red-500">Error: {error.message}</p>
       ) : (
         <Swiper
           modules={[Pagination, Scrollbar]}
@@ -197,7 +192,7 @@ function RelatedProducts({ category, currentId }) {
           })}
 
           {/* Pagination that only shows on mobile/tablet */}
-          <div className="!mt-10 lg:hidden"></div>
+          <div className="mt-10 lg:hidden"></div>
 
           {/* Optional: Scrollbar */}
           {/* <div className="swiper-scrollbar mt-4 hidden lg:block"></div> */}
