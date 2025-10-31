@@ -103,7 +103,7 @@ function RelatedProducts({ category, currentId }) {
             },
           }}
         >
-          {products.map((product) => {
+          {relatedProducts.map((product) => {
             // Calculate short title inside the map function
             const shortTitle =
               product.title.length > 20
