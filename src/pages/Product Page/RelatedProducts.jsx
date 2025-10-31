@@ -26,7 +26,7 @@ function RelatedProducts({ category, currentId }) {
     isLoading,
     error,
   } = useQuery({
-    ueryKey: ["relatedProducts", category, currentId],
+    queryKey: ["relatedProducts", category, currentId],
     queryFn: async () => {
       if (!category) return [];
       const res = await fetch(
@@ -57,8 +57,8 @@ function RelatedProducts({ category, currentId }) {
       return productsWithColors;
     },
   });
-  
-  if (!isLoading && products.length === 0) {
+
+  if (!isLoading && relatedProducts.length === 0) {
     return null;
   }
 
